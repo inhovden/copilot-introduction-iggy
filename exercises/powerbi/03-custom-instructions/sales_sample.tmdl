@@ -2,7 +2,14 @@ table sales_sample
 	lineageTag: 30000000-0000-0000-0000-000000000001
 
 	/// TODO: Ask Copilot to write your "% Product Contribution" measure here
-	measure '% Product Contribution' = BLANK()
+	measure '% Product Contribution' =
+		DIVIDE(
+			SUMX(sales_sample, sales_sample[quantity] * sales_sample[unit_price]),
+			CALCULATE(
+				SUMX(sales_sample, sales_sample[quantity] * sales_sample[unit_price]),
+				REMOVEFILTERS(sales_sample[product])
+			)
+		)
 		formatString: 0.0%
 		lineageTag: 30000000-0000-0000-0000-000000000002
 
