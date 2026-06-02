@@ -44,7 +44,7 @@ table sales_sample
 	measure X = IF(SELECTEDVALUE(sales_sample[region])="North",[Total Revenue]*1.1,[Total Revenue])
 		lineageTag: 50000000-0000-0000-0000-000000000008
 
-	/// Calculates total revenue grouped and summed across unique product categories.
+	/// Calculates total revenue grouped and summed across unique product categories...
 	measure cat_rev = SUMX(VALUES(sales_sample[category]), [Total Revenue])
 		lineageTag: 50000000-0000-0000-0000-000000000009
 
